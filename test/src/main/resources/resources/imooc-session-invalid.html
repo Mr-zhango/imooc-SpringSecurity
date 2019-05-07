@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body onload="Load('imooc-signIn.html')">
+您好,您的session已经失效,3S后自动跳转到登录页面进行登录,这是使用自己配置的实现.
+
+</body>
+<script type="text/javascript">
+    setInterval(function(){window.location.href = "/imooc-signIn.html"}, 3000);
+</script>
+</html>
