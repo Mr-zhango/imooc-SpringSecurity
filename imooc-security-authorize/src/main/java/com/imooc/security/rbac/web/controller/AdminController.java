@@ -31,12 +31,12 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
-	
-	/**
-	 * 获取当前登录的管理员信息
-	 * @param adminInfo
-	 * @return
-	 */
+
+    /**
+     * 获取当前登录的管理员信息
+     * @param user
+     * @return
+     */
 	@GetMapping("/me")
 	public AdminInfo me(@AuthenticationPrincipal UserDetails user) {
 		AdminInfo info = new AdminInfo();

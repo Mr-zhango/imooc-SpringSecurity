@@ -20,6 +20,9 @@ import java.util.Set;
 @Component("rbacService")
 public class RbacServiceImpl implements RbacService {
 
+    /**
+     * 判断是否匹配
+     */
 	private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
 	@Override

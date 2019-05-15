@@ -29,6 +29,10 @@ public class TestApplication {
 	}
 
 
+    /**
+     * 微信登录成功之后就自定进行注册
+     * @param request
+     */
 	@PostMapping("/user/regist")
 	public void regist(HttpServletRequest request){
 		providerSignInUtils.doPostSignUp("jojo", new ServletWebRequest(request));
