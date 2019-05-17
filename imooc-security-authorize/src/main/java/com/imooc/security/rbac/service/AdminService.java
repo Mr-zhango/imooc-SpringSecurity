@@ -45,6 +45,6 @@ public interface AdminService {
 	 * @param condition
 	 * @return
 	 */
-	Page<AdminInfo> 	query(AdminCondition condition, Pageable pageable);
+	Page<AdminInfo> query(AdminCondition condition, Pageable pageable);
 
 }

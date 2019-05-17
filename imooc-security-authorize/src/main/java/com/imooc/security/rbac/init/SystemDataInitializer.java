@@ -3,8 +3,6 @@
  */
 package com.imooc.security.rbac.init;
 
-import java.util.List;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * 系统初始化器
@@ -38,9 +39,7 @@ public class SystemDataInitializer implements ApplicationListener<ContextRefresh
 		
 		if(CollectionUtils.isNotEmpty(dataInitializers)){
 			
-			dataInitializers.sort((initor1, initor2) -> {
-				return initor1.getIndex().compareTo(initor2.getIndex());
-			});
+			dataInitializers.sort(Comparator.comparing(DataInitializer::getIndex));
 			
 			dataInitializers.stream().forEach(dataInitializer -> {
 				try {

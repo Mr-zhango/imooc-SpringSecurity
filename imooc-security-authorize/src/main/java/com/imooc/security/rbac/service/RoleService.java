@@ -3,9 +3,9 @@
  */
 package com.imooc.security.rbac.service;
 
-import java.util.List;
-
 import com.imooc.security.rbac.dto.RoleInfo;
+
+import java.util.List;
 
 /**
  * 角色服务
@@ -40,7 +40,6 @@ public interface RoleService {
 	RoleInfo getInfo(Long id);
 	/**
 	 * 查询所有角色
-	 * @param condition
 	 * @return
 	 */
 	List<RoleInfo> findAll();

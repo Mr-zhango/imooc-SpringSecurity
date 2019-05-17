@@ -3,11 +3,11 @@
  */
 package com.imooc.security.rbac.init;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.IOException;
 
 /**
  * 抽象数据初始化器，所有的数据初始化器应该继承此类
@@ -19,9 +19,7 @@ public abstract class AbstractDataInitializer implements DataInitializer {
 
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
-	/* (non-Javadoc)
-	 * @see com.idea.core.spi.initializer.DataInitializer#init()
-	 */
+
 	@Override
 	@Transactional
 	public void init() throws Exception {

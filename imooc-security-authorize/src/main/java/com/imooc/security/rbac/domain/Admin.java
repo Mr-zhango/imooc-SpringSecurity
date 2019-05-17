@@ -3,25 +3,17 @@
  */
 package com.imooc.security.rbac.domain;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * 管理员(用户)
@@ -72,13 +64,6 @@ public class Admin implements UserDetails {
 	@Transient
 	private Set<Long> resourceIds = new HashSet<>();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.springframework.security.core.userdetails.UserDetails#getAuthorities(
-	 * )
-	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
@@ -105,12 +90,7 @@ public class Admin implements UserDetails {
 		this.id = id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.springframework.security.core.userdetails.UserDetails#getUsername()
-	 */
+	@Override
 	public String getUsername() {
 		return username;
 	}
@@ -122,12 +102,7 @@ public class Admin implements UserDetails {
 		this.username = username;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.springframework.security.core.userdetails.UserDetails#getPassword()
-	 */
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -139,45 +114,25 @@ public class Admin implements UserDetails {
 		this.password = password;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.security.core.userdetails.UserDetails#
-	 * isAccountNonExpired()
-	 */
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.security.core.userdetails.UserDetails#
-	 * isAccountNonLocked()
-	 */
+
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.security.core.userdetails.UserDetails#
-	 * isCredentialsNonExpired()
-	 */
+
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.springframework.security.core.userdetails.UserDetails#isEnabled()
-	 */
+
 	@Override
 	public boolean isEnabled() {
 		return true;
@@ -209,7 +164,6 @@ public class Admin implements UserDetails {
 	
 	/**
 	 * @param data
-	 * @param consumer
 	 */
 	private void init(Set<?> data){
 		if (CollectionUtils.isEmpty(data)) {

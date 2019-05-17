@@ -4,17 +4,6 @@
 package com.imooc.security.rbac.service.impl;
 
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.imooc.security.rbac.domain.Role;
 import com.imooc.security.rbac.domain.RoleResource;
 import com.imooc.security.rbac.dto.RoleInfo;
@@ -23,6 +12,16 @@ import com.imooc.security.rbac.repository.RoleRepository;
 import com.imooc.security.rbac.repository.RoleResourceRepository;
 import com.imooc.security.rbac.repository.support.QueryResultConverter;
 import com.imooc.security.rbac.service.RoleService;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author zhailiang
@@ -40,10 +39,7 @@ public class RoleServiceImpl implements RoleService {
 	
 	@Autowired
 	private RoleResourceRepository roleResourceRepository;
-	
-	/* (non-Javadoc)
-	 * @see com.imooc.security.rbac.service.RoleService#create(com.imooc.security.rbac.dto.RoleInfo)
-	 */
+
 	@Override
 	public RoleInfo create(RoleInfo info) {
 		Role role = new Role();
@@ -52,9 +48,6 @@ public class RoleServiceImpl implements RoleService {
 		return info;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.imooc.security.rbac.service.RoleService#update(com.imooc.security.rbac.dto.RoleInfo)
-	 */
 	@Override
 	public RoleInfo update(RoleInfo info) {
 		Role role = roleRepository.findOne(info.getId());
@@ -62,10 +55,7 @@ public class RoleServiceImpl implements RoleService {
 		return info;
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * @see com.idea.ams.service.RoleService#delete(java.lang.Long)
-	 */
+
 	@Override
 	public void delete(Long id) {
 		Role role = roleRepository.findOne(id);
@@ -90,10 +80,7 @@ public class RoleServiceImpl implements RoleService {
 //		role.setMenus(menuIds);
 //	}
 
-	/**
-	 * (non-Javadoc)
-	 * @see com.idea.ams.service.RoleService#getRoleInfo(java.lang.Long)
-	 */
+
 	@Override
 	public RoleInfo getInfo(Long id) {
 		Role role = roleRepository.findOne(id);
@@ -102,9 +89,7 @@ public class RoleServiceImpl implements RoleService {
 		return info;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.imooc.security.rbac.service.RoleService#findAll()
-	 */
+
 	@Override
 	public List<RoleInfo> findAll() {
 		return QueryResultConverter.convert(roleRepository.findAll(), RoleInfo.class);
@@ -120,10 +105,6 @@ public class RoleServiceImpl implements RoleService {
 		return resourceIds.toArray(new String[resourceIds.size()]);
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * @see com.idea.ams.service.RoleService#setRoleMenu(java.lang.Long, java.lang.String)
-	 */
 	@Override
 	public void setRoleResources(Long roleId, String resourceIds) {
 		resourceIds = StringUtils.removeEnd(resourceIds, ",");

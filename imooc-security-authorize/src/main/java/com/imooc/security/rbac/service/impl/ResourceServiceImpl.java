@@ -3,19 +3,18 @@
  */
 package com.imooc.security.rbac.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.imooc.security.rbac.domain.Admin;
 import com.imooc.security.rbac.domain.Resource;
 import com.imooc.security.rbac.dto.ResourceInfo;
 import com.imooc.security.rbac.repository.AdminRepository;
 import com.imooc.security.rbac.repository.ResourceRepository;
 import com.imooc.security.rbac.service.ResourceService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author zhailiang
@@ -30,16 +29,14 @@ public class ResourceServiceImpl implements ResourceService {
 	@Autowired
 	private AdminRepository adminRepository;
 
-	/* (non-Javadoc)
-	 * @see com.idea.ams.service.ResourceService#getResourceTree(java.lang.Long, com.idea.ams.domain.Admin)
-	 */
+
 	@Override
 	public ResourceInfo getTree(Long adminId) {
 		Admin admin = adminRepository.findOne(adminId);
 		return resourceRepository.findByName("根节点").toTree(admin);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.imooc.security.rbac.service.ResourceService#getInfo(java.lang.Long)
 	 */
 	@Override
@@ -74,9 +71,8 @@ public class ResourceServiceImpl implements ResourceService {
 	public void delete(Long id) {
 		resourceRepository.delete(id);
 	}
-	/* (non-Javadoc)
-	 * @see com.imooc.security.rbac.service.ResourceService#move(java.lang.Long, boolean)
-	 */
+
+
 	@Override
 	public Long move(Long id, boolean up) {
 		Resource resource = resourceRepository.findOne(id);

@@ -3,23 +3,18 @@
  */
 package com.imooc.security.rbac.init;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import com.imooc.security.rbac.domain.*;
+import com.imooc.security.rbac.repository.AdminRepository;
+import com.imooc.security.rbac.repository.ResourceRepository;
+import com.imooc.security.rbac.repository.RoleAdminRepository;
+import com.imooc.security.rbac.repository.RoleRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.imooc.security.rbac.domain.Admin;
-import com.imooc.security.rbac.domain.Resource;
-import com.imooc.security.rbac.domain.ResourceType;
-import com.imooc.security.rbac.domain.Role;
-import com.imooc.security.rbac.domain.RoleAdmin;
-import com.imooc.security.rbac.repository.AdminRepository;
-import com.imooc.security.rbac.repository.ResourceRepository;
-import com.imooc.security.rbac.repository.RoleAdminRepository;
-import com.imooc.security.rbac.repository.RoleRepository;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 默认的系统数据初始化器，永远在其他数据初始化器之前执行
@@ -45,21 +40,13 @@ public class AdminDataInitializer extends AbstractDataInitializer {
 	@Autowired
 	protected ResourceRepository resourceRepository;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.idea.core.spi.initializer.DataInitializer#getIndex()
-	 */
+
 	@Override
 	public Integer getIndex() {
 		return Integer.MIN_VALUE;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.idea.core.spi.initializer.AbstractDataInitializer#doInit()
-	 */
+
 	@Override
 	protected void doInit() {
 		initResource();
@@ -70,9 +57,7 @@ public class AdminDataInitializer extends AbstractDataInitializer {
 	/**
 	 * 初始化用户数据
 	 * 
-	 * @param customer
 	 * @param role
-	 * @param organ
 	 */
 	private void initAdmin(Role role) {
 		Admin admin = new Admin();
@@ -89,7 +74,6 @@ public class AdminDataInitializer extends AbstractDataInitializer {
 	/**
 	 * 初始化角色数据
 	 * 
-	 * @param customer
 	 * @return
 	 */
 	private Role initRole() {
@@ -115,22 +99,13 @@ public class AdminDataInitializer extends AbstractDataInitializer {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.idea.core.spi.initializer.AbstractDataInitializer#isNeedInit()
-	 */
 	@Override
 	protected boolean isNeedInit() {
 		return adminRepository.count() == 0;
 	}
 
 	/**
-	 * @param id
 	 * @param name
-	 * @param link
-	 * @param iconName
-	 * @param parent
 	 * @return
 	 */
 	protected Resource createRoot(String name) {
@@ -141,7 +116,6 @@ public class AdminDataInitializer extends AbstractDataInitializer {
 	}
 
 	/**
-	 * @param id
 	 * @param name
 	 * @param parent
 	 * @return
@@ -151,7 +125,6 @@ public class AdminDataInitializer extends AbstractDataInitializer {
 	}
 
 	/**
-	 * @param id
 	 * @param name
 	 * @param link
 	 * @param iconName
